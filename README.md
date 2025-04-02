@@ -1,2 +1,2 @@
 ﻿# My Project
-![README](image.png)
+![README](readme-logo-vector.png)
