@@ -2,6 +2,15 @@ def calculate_bmr(weight, height, age, gender):
     """
     Розрахунок базального метаболізму (BMR) за формулою Міффліна-Сан Жеора
     """
+    # Додаємо валідацію для ваги, зросту та віку
+    if weight <= 0:
+        raise ValueError("Вага має бути більшою за 0")
+    if height <= 0:
+        raise ValueError("Зріст має бути більшим за 0")
+    if age <= 0:
+        raise ValueError("Вік має бути більшим за 0")
+
+    # Перевірка статі
     if gender == 1:
         return 10 * weight + 6.25 * height - 5 * age + 5
     elif gender == 2:
@@ -15,11 +24,11 @@ def calculate_tdee(bmr, activity_level):
     Розрахунок добової норми калорій (TDEE) на основі рівня активності
     """
     activity_multipliers = {
-        1: 1.2,  # сидячий
+        1: 1.2,    # сидячий
         2: 1.375,  # малорухливий
-        3: 1.55,  # помірний
+        3: 1.55,   # помірний
         4: 1.725,  # активний
-        5: 1.9  # дуже активний
+        5: 1.9     # дуже активний
     }
 
     if activity_level not in activity_multipliers:
@@ -51,6 +60,7 @@ def main():
         print(f"Ваша добова норма калорій (TDEE): {tdee:.2f} ккал")
     except ValueError as e:
         print(f"Помилка: {e}")
+    input("\nНатисніть Enter, щоб вийти...")
 
 
 if __name__ == "__main__":
